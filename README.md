@@ -39,3 +39,6 @@ ex:
 You can run the specs with
 
 `$ rspec`
+
+## License
+This project is licensed under the terms of the MIT license.
