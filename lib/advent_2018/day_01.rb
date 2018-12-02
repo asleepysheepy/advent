@@ -5,7 +5,7 @@ require 'set'
 module Advent2018
   module Day01
     def self.part_1(frequencies)
-      frequencies.inject(0) { |sum, x| sum + x }
+      frequencies.sum
     end
 
     def self.part_2(frequencies)
