@@ -12,6 +12,7 @@ end
 desc 'runs all 2018 challenges'
 task :'2018' do
   Rake::Task['2018:day01'].invoke
+  Rake::Task['2018:day02'].invoke
 end
 
 desc 'runs all challenges'
