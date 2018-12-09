@@ -26,10 +26,12 @@ namespace :'2018' do
   end
 end
 
-module Advent2018::Day01
-  def self.load_file
-    data = []
-    File.foreach('data/2018/day_01.txt') { |line| data << line.to_i }
-    data
+module Advent2018
+  module Day01
+    def self.load_file
+      data = []
+      File.foreach('data/2018/day_01.txt') { |line| data << line.to_i }
+      data
+    end
   end
 end
