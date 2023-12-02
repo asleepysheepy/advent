@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "solutions to the Advent of Code challenges",
   "type": "module",
-  "scripts": {
-    "start": "node src/index.js",
-    "format": "prettier --write ."
-  },
-  "author": "",
   "license": "WTFPL",
   "devDependencies": {
     "prettier": "^3.1.0"
