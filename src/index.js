@@ -22,12 +22,10 @@ async function runYear(year, day) {
       break
     default:
       console.error(
-        'Invalid year passed.\n',
-        '\n',
+        'Invalid year passed.\n\n',
         'Valid years are:\n',
         '2023\n',
-        '\n',
-        `You entered: ${year}`,
+        `\nYou entered: ${year}`,
       )
   }
 }
