@@ -7,12 +7,9 @@ export default async function run(day) {
 
   // If a day was not passed, run all the days
   if (!day) {
-    await Promise.all(
-      days.map(async (day) => {
-        await day()
-        console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-')
-      }),
-    )
+    await day1()
+    console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-')
+    await day2()
 
     return
   }
