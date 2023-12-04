@@ -1,0 +1,14 @@
+{
+  "fmt": {
+    "lineWidth": 120,
+    "semiColons": false,
+    "singleQuote": true
+  },
+  "imports": {
+    "/": "./src/",
+    "fmt/": "https://deno.land/std@0.208.0/fmt/"
+  },
+  "tasks": {
+    "start": "deno run -A /index.ts"
+  }
+}

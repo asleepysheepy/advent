@@ -1,20 +1,26 @@
-import { readFile } from 'node:fs/promises'
+import { bold, brightGreen, gray } from 'fmt/colors.ts'
 
-const calibrationFilePath = './src/2023/day01/data.txt'
+const dataFilePath = './src/2023/day01/data.txt'
 
 export default async function run() {
-  const fileInput = await readFile(calibrationFilePath, { encoding: 'utf8' })
-  const rawCalibrationData = fileInput.split('\n')
+  const rawCalibrationData = (await Deno.readTextFile(dataFilePath)).split('\n')
   const parsedCalibrationData = parseCalibrationData(rawCalibrationData)
 
-  console.log('01, 2023:')
-  console.log(`\tThe original calibration number is: ${getCalibrationNumber(rawCalibrationData)}`)
-  console.log(`\tThe updated calibration number is: ${getCalibrationNumber(parsedCalibrationData)}`)
+  const originalCalibrationNumber = getCalibrationNumber(rawCalibrationData)
+  const updatedCalibrationNumber = getCalibrationNumber(parsedCalibrationData)
+
+  console.log(gray('Day 01'))
+  console.log('  The original calibration number is:', brightGreen(bold(`${originalCalibrationNumber}`)))
+  console.log('  The updated calibration number is:', brightGreen(bold(`${updatedCalibrationNumber}`)))
 }
 
-function getCalibrationNumber(calibrationData) {
+export function getCalibrationNumber(calibrationData: string[]) {
   return calibrationData.reduce((partialSum, dataItem) => {
     const numbers = dataItem.match(/\d/g)
+    if (numbers == undefined) {
+      return partialSum
+    }
+
     const firstNum = numbers[0]
     const lastNum = numbers[numbers.length - 1]
 
@@ -22,7 +28,7 @@ function getCalibrationNumber(calibrationData) {
   }, 0)
 }
 
-function parseCalibrationData(calibrationData) {
+export function parseCalibrationData(calibrationData: string[]) {
   return calibrationData.map((d) => {
     let data = d
 
