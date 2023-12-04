@@ -1,3 +1,5 @@
+import { bold, brightGreen, gray } from 'fmt/colors.ts'
+
 /**
  * Adds all the numbers in a given array to produce a sum
  *
@@ -16,4 +18,12 @@ export function sumArray(array: number[]): number {
  */
 export function multiplyArray(array: number[]): number {
   return array.reduce((product, current) => product * current, 1)
+}
+
+export function printTitle(title: string) {
+  console.log(gray(title))
+}
+
+export function printAnswer(flavourText: string, answer: string | number) {
+  console.log(`  ${flavourText}`, brightGreen(bold(`${answer}`)))
 }

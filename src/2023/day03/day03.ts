@@ -1,5 +1,4 @@
-import { bold, brightGreen, gray } from 'fmt/colors.ts'
-import { sumArray } from '/utils.ts'
+import { printAnswer, printTitle, sumArray } from '/utils.ts'
 
 const dataFilePath = './src/2023/day03/data.txt'
 
@@ -11,9 +10,9 @@ export default async function run() {
   const partNumbers = parseSchematicData(rawSchematicData, findPartNumbers)
   // const gearRatios = parseSchematicData(rawSchematicData, findGearRatios)
 
-  console.log(gray('Day 03 - Gear Ratios'))
-  console.log('  The sum of engine part numbers is:', brightGreen(bold(`${sumArray(partNumbers)}`)))
-  // console.log('  The sum of all of the gear ratios is:', brightGreen(bold(`${sumArray(gearRatios)}`)))
+  printTitle('Day 03 - Gear Ratios')
+  printAnswer('The sum of engine part numbers is:', sumArray(partNumbers))
+  // printAnswer('The sum of all of the gear ratios is:', sumArray(gearRatios)
 }
 
 function parseSchematicData(schematicData: string[], parser: schematicParserFunction) {

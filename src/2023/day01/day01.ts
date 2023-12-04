@@ -1,4 +1,5 @@
-import { bold, brightGreen, gray } from 'fmt/colors.ts'
+import { gray } from 'fmt/colors.ts'
+import { printAnswer, printTitle } from '/utils.ts'
 
 const dataFilePath = './src/2023/day01/data.txt'
 
@@ -9,9 +10,9 @@ export default async function run() {
   const originalCalibrationNumber = getCalibrationNumber(rawCalibrationData)
   const updatedCalibrationNumber = getCalibrationNumber(parsedCalibrationData)
 
-  console.log(gray('Day 01'))
-  console.log('  The original calibration number is:', brightGreen(bold(`${originalCalibrationNumber}`)))
-  console.log('  The updated calibration number is:', brightGreen(bold(`${updatedCalibrationNumber}`)))
+  printTitle('Day 01 - Trebuchet?!')
+  printAnswer('The original calibration number is:', originalCalibrationNumber)
+  printAnswer('The updated calibration number is:', updatedCalibrationNumber)
 }
 
 export function getCalibrationNumber(calibrationData: string[]) {

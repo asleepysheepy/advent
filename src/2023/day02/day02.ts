@@ -1,5 +1,4 @@
-import { bold, brightGreen, gray } from 'fmt/colors.ts'
-import { multiplyArray, sumArray } from '/utils.ts'
+import { multiplyArray, printAnswer, printTitle, sumArray } from '/utils.ts'
 
 const dataFilePath = './src/2023/day02/data.txt'
 
@@ -35,9 +34,9 @@ export default async function run() {
   const gameIdSum = sumArray(possibleGames.map((g) => g.id))
   const gamePowerSum = sumArray(parsedGameData.map((g) => g.power))
 
-  console.log(gray('Day 02'))
-  console.log('  The sum of game ids possible with 12R, 13G, and 14B cubes:', brightGreen(bold(`${gameIdSum}`)))
-  console.log('  The sum of powers of games:', brightGreen(bold(`${gamePowerSum}`)))
+  printTitle('Day 02 - Cube Conundrum')
+  printAnswer('The sum of game ids possible with 12R, 13G, and 14B cubes:', gameIdSum)
+  printAnswer('The sum of powers of games:', gamePowerSum)
 }
 
 function parseGames(games: string[]): Game[] {
