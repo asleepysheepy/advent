@@ -3,41 +3,39 @@ import { sumArray } from '/utils.ts'
 
 const dataFilePath = './src/2023/day03/data.txt'
 
+type schematicParserFunction = (line: string, previousLine: string, nextLine: string) => number[]
+
 export default async function run() {
   const rawSchematicData = (await Deno.readTextFile(dataFilePath)).split('\n')
 
-  const parsedSchematicData = rawSchematicData.map((schematicLine, index, schematicData) => {
+  const partNumbers = parseSchematicData(rawSchematicData, findPartNumbers)
+  // const gearRatios = parseSchematicData(rawSchematicData, findGearRatios)
+
+  console.log(gray('Day 03 - Gear Ratios'))
+  console.log('  The sum of engine part numbers is:', brightGreen(bold(`${sumArray(partNumbers)}`)))
+  // console.log('  The sum of all of the gear ratios is:', brightGreen(bold(`${sumArray(gearRatios)}`)))
+}
+
+function parseSchematicData(schematicData: string[], parser: schematicParserFunction) {
+  return schematicData.map((schematicLine, index) => {
     const previousLine = schematicData[index - 1]
     const nextLine = schematicData[index + 1]
 
-    return parseLine(schematicLine, previousLine, nextLine)
+    return parser(schematicLine, previousLine, nextLine)
   }).flat()
-
-  const partNumbers = parsedSchematicData
-    .filter((datum) => datum.isValidPart)
-    .map((datum) => datum.number)
-
-  console.log(gray('Day 02'))
-  console.log('  The sum of engine part numbers is:', brightGreen(bold(`${sumArray(partNumbers)}`)))
 }
 
-function hasSymbol(str: string): boolean {
-  const str2 = str.replaceAll('.', '').replaceAll(/\d/g, '')
+function findPartNumbers(line: string, previousLine: string, nextLine: string): number[] {
+  const numberMatches = line.matchAll(/\d+/g)
+  const lineData = []
 
-  return str2.length > 0
-}
+  for (const match of numberMatches) {
+    const number = match[0]
+    const index = match.index
+    if (index == null) {
+      continue
+    }
 
-function parseLine(line: string, previousLine: string, nextLine: string) {
-  const numbers = line.match(/\d+/g)
-  if (numbers == null) {
-    return [{
-      number: 0,
-      isValidPart: false,
-    }]
-  }
-
-  return numbers.map((number) => {
-    const index = line.indexOf(number)
     const previousCharacterIndex = index - 1
     const nextCharacterIndex = index + number.length
 
@@ -57,9 +55,13 @@ function parseLine(line: string, previousLine: string, nextLine: string) {
       nextLineSection,
     ].reduce((x, y) => (y?.length > 0 ? x.concat(y) : x), '')
 
-    return {
+    lineData.push({
       number: parseInt(number),
-      isValidPart: hasSymbol(surroundingCharacters),
-    }
-  })
+      isValidPart: surroundingCharacters.replaceAll('.', '').replaceAll(/\d/g, '').length > 0,
+    })
+  }
+
+  return lineData
+    .filter((datum) => datum.isValidPart)
+    .map((datum) => datum.number)
 }
