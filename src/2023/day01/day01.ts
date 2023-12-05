@@ -1,18 +1,17 @@
-import { gray } from 'fmt/colors.ts'
 import { printAnswer, printTitle } from '/utils.ts'
 
 const dataFilePath = './src/2023/day01/data.txt'
 
-export default async function run() {
-  const rawCalibrationData = (await Deno.readTextFile(dataFilePath)).split('\n')
+export default function run() {
+  const rawCalibrationData = Deno.readTextFileSync(dataFilePath).split('\n')
   const parsedCalibrationData = parseCalibrationData(rawCalibrationData)
 
   const originalCalibrationNumber = getCalibrationNumber(rawCalibrationData)
   const updatedCalibrationNumber = getCalibrationNumber(parsedCalibrationData)
 
   printTitle('Day 01 - Trebuchet?!')
-  printAnswer('The original calibration number is:', originalCalibrationNumber)
-  printAnswer('The updated calibration number is:', updatedCalibrationNumber)
+  printAnswer('The original calibration number is', originalCalibrationNumber)
+  printAnswer('The updated calibration number is', updatedCalibrationNumber)
 }
 
 export function getCalibrationNumber(calibrationData: string[]) {

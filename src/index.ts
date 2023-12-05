@@ -13,10 +13,10 @@ function run() {
   }
 }
 
-async function runYear(year: number, day: number) {
+function runYear(year: number, day: number) {
   switch (year) {
     case 2023:
-      await year2023(day)
+      year2023(day)
       break
     default:
       console.error(red('Invalid year passed.\n'))
@@ -25,8 +25,8 @@ async function runYear(year: number, day: number) {
   }
 }
 
-async function runAll() {
-  await year2023()
+function runAll() {
+  year2023()
 }
 
 run()

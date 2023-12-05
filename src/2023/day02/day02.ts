@@ -25,8 +25,8 @@ const emptyDraw: Draw = {
   blue: 0,
 }
 
-export default async function run() {
-  const rawGameData = (await Deno.readTextFile(dataFilePath)).split('\n')
+export default function run() {
+  const rawGameData = Deno.readTextFileSync(dataFilePath).split('\n')
 
   const parsedGameData = parseGames(rawGameData)
   const possibleGames = getPossibleGames(parsedGameData)
@@ -35,8 +35,8 @@ export default async function run() {
   const gamePowerSum = sumArray(parsedGameData.map((g) => g.power))
 
   printTitle('Day 02 - Cube Conundrum')
-  printAnswer('The sum of game ids possible with 12R, 13G, and 14B cubes:', gameIdSum)
-  printAnswer('The sum of powers of games:', gamePowerSum)
+  printAnswer('The sum of game ids possible with 12R, 13G, and 14B cubes', gameIdSum)
+  printAnswer('The sum of powers of games', gamePowerSum)
 }
 
 function parseGames(games: string[]): Game[] {

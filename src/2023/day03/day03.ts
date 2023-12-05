@@ -4,15 +4,15 @@ const dataFilePath = './src/2023/day03/data.txt'
 
 type schematicParserFunction = (line: string, previousLine: string, nextLine: string) => number[]
 
-export default async function run() {
-  const rawSchematicData = (await Deno.readTextFile(dataFilePath)).split('\n')
+export default function run() {
+  const rawSchematicData = Deno.readTextFileSync(dataFilePath).split('\n')
 
   const partNumbers = parseSchematicData(rawSchematicData, findPartNumbers)
   // const gearRatios = parseSchematicData(rawSchematicData, findGearRatios)
 
   printTitle('Day 03 - Gear Ratios')
-  printAnswer('The sum of engine part numbers is:', sumArray(partNumbers))
-  // printAnswer('The sum of all of the gear ratios is:', sumArray(gearRatios)
+  printAnswer('The sum of engine part numbers is', sumArray(partNumbers))
+  // printAnswer('The sum of all of the gear ratios is', sumArray(gearRatios)
 }
 
 function parseSchematicData(schematicData: string[], parser: schematicParserFunction) {

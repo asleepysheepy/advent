@@ -25,5 +25,5 @@ export function printTitle(title: string) {
 }
 
 export function printAnswer(flavourText: string, answer: string | number) {
-  console.log(`  ${flavourText}`, brightGreen(bold(`${answer}`)))
+  console.log(`  ${flavourText}:`, brightGreen(bold(`${answer}`)))
 }
