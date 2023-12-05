@@ -84,4 +84,4 @@ In this schematic, there are two gears. The first is in the top left; it has par
 (The * adjacent to 617 is not a gear because it is only adjacent to one part number.) Adding up all
 of the gear ratios produces 467835.
 
-What is the sum of all of the gear ratios in your engine schematic?
+What is the sum of all of the gear ratios in your engine schematic? **`75220503`**
